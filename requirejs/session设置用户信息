@@ -1,0 +1,15 @@
+1.先增加express的session依赖
+	1.1.首先到express的项目目录下 
+	1.2.然后npm install express-session --save
+	1.3在app.js离配置session（具体参数的理解看文档）
+	1.4配置的例子：
+	app.use(session({
+    		secret: 'lipeng',
+    		cookie: {maxAge: 600000},
+    		resave: true,
+	    	saveUninitialized: true
+	}));
+	1.5引入axios模块作为http请求的基础模块
+	1.6在用户登录的时候设置用户名和密码
+	1.7axios的使用：见文档
+	
