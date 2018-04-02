@@ -1,0 +1,11 @@
+1.首先，下载安装nodejs自不必说。
+2.安装好nodejs之后子代npm。
+3.安装express：
+	3.1创建一个目录，npm init生成package.json文件
+	3.2npm install express --save将npm加入到依赖中
+	3.3到上一步已经将express模块引进了
+	3.4通过express工厂生成express  $ npm install express-generator -g，全局安装express-generator
+	3.5express -e生成ejs模板的项目结构
+	3.6通过npm install下载安装依赖
+	3.7set DEBUG=myapp & npm start 执行（打开 http://localhost:3000/ 就可以看到了）
+	3.8在控制台一直ctrl+c就会推出启动，可以重新执行。
