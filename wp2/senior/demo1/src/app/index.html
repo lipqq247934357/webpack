@@ -1,0 +1,67 @@
+<div id="app">
+    <div class="vipBrand">
+
+        <div v-if="vName === 'VIP7'" class="toUp">
+            去分享
+        </div>
+        <div v-else class="toUp">
+            去升级
+        </div>
+        <div class="vipName tc">
+            {{vName}}会员
+            <span v-if="isLow === 'true'" class="pa">&nbsp;降级中&nbsp;</span>
+        </div>
+        <div v-if="vName !== 'VIP7'" class="vipRate">
+            您打败了{{proportion}}%的用户<br>
+            距{{nextName}}需新增{{distance}}元
+        </div>
+    </div>
+    <div class="myRightTitle">
+        我的特权
+        <span v-if="vName === 'VIP7'">
+        累积持有天数<span>12</span>天
+        </span>
+    </div>
+    <div class="right">
+        <ul>
+            <li>
+                <img src="./img/vip/toCash.png" alt="">
+                <span>{{vip_cash_count.name}}</span>
+                <span class="redColor">{{vip_cash_count.value == -1?"无限制":vip_cash_count.value}}</span>
+            </li>
+            <li>
+                <img src="./img/vip/birthday.png" alt="">
+                <span>{{vip_birthday.name}}</span>
+                <span class="redColor">{{vip_birthday.value}}元</span>
+            </li>
+            <li>
+                <img src="./img/vip/amountX.png" alt="">
+                <span>{{vip_xAmount.name}}</span>
+                <span class="redColor">{{vip_xAmount.value}}万</span>
+            </li>
+            <li>
+                <img src="./img/vip/gift.png" alt="">
+                <span>{{vip_upGradeGift.name}}</span>
+                <span class="redColor">{{vip_upGradeGift.value}}元</span>
+            </li>
+            <li>
+                <img src="./img/vip/signIn.png" alt="">
+                <span>{{vip_signInAward.name}}</span>
+                <span class="redColor">{{vip_signInAward.value}}元</span>
+            </li>
+            <li>
+                <img v-bind:class="[vip_specialGift.value == 1 ? '' : 'gray']" src="./img/vip/special.png" alt="">
+                <span>{{vip_specialGift.name}}</span>
+            </li>
+            <li>
+                <img v-bind:class="[vip_customerService.value == 1 ? '' : 'gray']" src="./img/vip/kefu.png" alt="">
+                <span>{{vip_customerService.name}}</span>
+            </li>
+            <li>
+                <img class="last" src="./img/vip/hope.png" alt="">
+                <span class="white">更多福利<br>
+                敬请期待</span>
+            </li>
+        </ul>
+    </div>
+</div>
