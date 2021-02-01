@@ -11,7 +11,21 @@ module.exports = {
     },
     module: {
         rules:[
-            {test:/\.txt$/, use:'raw-loader'}
+            {test:/\.txt$/, use:'raw-loader'},
+            {test: /\.css/, use:['style-loader','css-loader']}, // 从右往左执行,需要安装依赖
+            {test: /\.less/, use:['style-loader','css-loader','less-loader']}, //
+            {test: /\.scss/, use:['style-loader','css-loader','sass-loader']}, //
+            {
+                test: /\.(png|jpg|gif)$/,
+                use:[{
+                    loader: 'file-loader', // url-loader limit: 如果文件体积小于8k的话就转成base64字符串内嵌到html中
+                    options: {
+                      name:'[hash:10].[ext]',
+                    //   esModule: false // 是否包装成es6模块，如果包装成es6,需要使用default取值 
+                    }
+                }
+                ]
+            }
         ]
     },
     plugins: [
