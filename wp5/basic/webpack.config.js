@@ -3,14 +3,29 @@ const path = require('path');
 module.exports = {
     context: process.cwd(), // http://nodejs.cn/api/process/process_cwd.html
     entry: './src/index.js',
-    // mode: 'development', // 
+    mode: 'development', // 
     output: {
         path: path.resolve(__dirname, 'dist'), // __dirname 表示文件的绝对路径,一个全局变量
         filename: 'bundle.js',
-        // publicPath: 'assets' // 配置打包后的目录前缀 最终文件名为：publicPath+filename
+        // publicPath: 'assets' // 打包后的目录前缀 最终文件名为：publicPath+filename
     },
     module: {
         rules:[
+            {test:/\.jsx?$/, use:[
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            "@babel/preset-env", // 将es6转换成js
+                            "@babel/preset-react" // 将jsx转换成js
+                        ],
+                        plugins: [
+                            ["babel/plugin-proposal-decorators", {legacy: true}],
+                            ["babel/plugin-proposal-class-properties", {loose: true}]
+                        ]
+                    }
+                },
+            ]},
             {test:/\.txt$/, use:'raw-loader'},
             {test: /\.css/, use:['style-loader','css-loader']}, // 从右往左执行,需要安装依赖
             {test: /\.less/, use:['style-loader','css-loader','less-loader']}, //
