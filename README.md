@@ -15,6 +15,13 @@ webpack
     2.file-loader，url-loader
     3.babel
 
+# 三：eslint
+
+
+# 四：sourcemap
+
+# 五：引入插件
+
 
 # 获取图片的方式
 1.使用static目录

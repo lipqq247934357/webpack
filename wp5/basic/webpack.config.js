@@ -1,9 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 module.exports = {
     context: process.cwd(), // http://nodejs.cn/api/process/process_cwd.html
     entry: './src/index.js',
     mode: 'development', // 
+    // devtool: 'source-map', // 映射方式
     output: {
         path: path.resolve(__dirname, 'dist'), // __dirname 表示文件的绝对路径,一个全局变量
         filename: 'bundle.js',
@@ -11,17 +13,36 @@ module.exports = {
     },
     module: {
         rules:[
+            {
+                test:/\.jsx?$/,
+                loader:'eslint-loader', // 先进行代码校验，再编译代码
+                enforce: 'pre', // 强制指定顺序，pre 之前
+                options:{fix:true}, // 启动自动修复
+                include:path.resolve(__dirname, 'src'),
+            },
             {test:/\.jsx?$/, use:[
                 {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            "@babel/preset-env", // 将es6转换成js
+                            ["@babel/preset-env", // 将es6转换成js
+                                {
+                                    // useBuiltIns: 'usage', // 按需加载polyfill  3个参数  false:引入所有的polyfill  entry：自己在入口引入                                   corjs
+                                    // corejs:{version:3}, // 指定corejs的版本号 2或者3
+                                    targets:{ // 指定要兼容的浏览器
+                                        // chrome:'60',
+                                        // firefox:'60',
+                                        // ie:'9',
+                                        // safari:'10',
+                                        // edge:'17'
+                                    }
+                                }
+                            ],
                             "@babel/preset-react" // 将jsx转换成js
                         ],
                         plugins: [
-                            ["babel/plugin-proposal-decorators", {legacy: true}],
-                            ["babel/plugin-proposal-class-properties", {loose: true}]
+                            ["@babel/plugin-proposal-decorators", {legacy: true}], //
+                            ["@babel/plugin-proposal-class-properties", {loose: true}] // 
                         ]
                     }
                 },
@@ -44,9 +65,18 @@ module.exports = {
         ]
     },
     plugins: [
+        // sourceMap
+        // new webpack.SourceMapDevToolPlugin({
+        //       append: '\n//# sourceMappingURL=http://127.0.0.1:8081/[url]',
+        //       filename: '[file].map',
+        // }),
         new HtmlWebpackPlugin({
             template:'./src/index.html'
-        })
+        }),
+        // 引入插件的一种方式
+        // new webpack.ProvidePlugin({
+        //     _: 'lodash'
+        // })
     ],
     devServer: {
         contentBase: path.resolve(__dirname, 'static'), // 当前目录下的文件夹作为公共资源使用

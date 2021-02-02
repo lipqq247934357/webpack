@@ -12,4 +12,7 @@ document.body.append(image);
 
 const func = (a, b) => a + b;
 console.log(func(1,2));
+console.log('1111');
 ReactDom.render(<h1>hello,11111</h1>, document.getElementById('root'));
+
+// console.log(_.join);
