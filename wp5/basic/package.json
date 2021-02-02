@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack serve",
-    "build:local": " cross-env mode=local webpack"
+    "build:local": "webpack --env=name=100"
   },
   "keywords": [],
   "author": "",

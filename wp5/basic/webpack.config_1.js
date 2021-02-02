@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 console.log(process.env.mode, 'process.env.mode');
 module.exports = env => {
-    console.log(env, 'env.mode');
+    // console.log(env, 'env.mode');
     return ({
             context: process.cwd(), // http://nodejs.cn/api/process/process_cwd.html
             entry: './src/index.js',
