@@ -5,14 +5,14 @@ console.log(process.env.mode, 'process.env.mode');
 module.exports = env => {
     // console.log(env, 'env.mode');
     return ({
-            context: process.cwd(), // http://nodejs.cn/api/process/process_cwd.html
+            context: process.cwd(), // http://nodejs.cn/api/process/process_cwd.html 当前工作目录 
             entry: './src/index.js',
-            mode: 'development', // 
+            mode: 'development', // production,development
             // devtool: 'source-map', // 映射方式
             output: {
                 path: path.resolve(__dirname, 'dist'), // __dirname 表示文件的绝对路径,一个全局变量
                 filename: 'bundle.js',
-                // publicPath: 'assets' // 打包后的目录前缀 最终文件名为：publicPath+filename
+                // publicPath: 'assets' // 打包后的目录前缀 最终文件名为：publicPathfilename
             },
             // 先通过cdn引入，然后再在这里引入
             // externals: {
@@ -20,6 +20,17 @@ module.exports = env => {
             // },
             module: {
                 rules:[
+                    // 将模块加到全局对象上，没用过
+                    // {
+                    //     test: require.resolve('lodash'),
+                    //     loader: 'expose-loader',
+                    //     options: {
+                    //         exposes: {
+                    //             globalName: '_',
+                    //             override: true,
+                    //         },
+                    //     },
+                    // },
                     {
                         test:/\.jsx?$/,
                         loader:'eslint-loader', // 先进行代码校验，再编译代码

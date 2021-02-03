@@ -8,16 +8,11 @@ module.exports = env => {
             context: process.cwd(), // http://nodejs.cn/api/process/process_cwd.html
             entry: './src/index.js',
             mode: 'development', // 
-            // devtool: 'source-map', // 映射方式
+            devtool: 'source-map', // 映射方式
             output: {
                 path: path.resolve(__dirname, 'dist'), // __dirname 表示文件的绝对路径,一个全局变量
                 filename: 'bundle.js',
-                // publicPath: 'assets' // 打包后的目录前缀 最终文件名为：publicPath+filename
             },
-            // 先通过cdn引入，然后再在这里引入
-            // externals: {
-            //     lodash: '_'
-            // },
             module: {
                 rules:[
                     {
@@ -34,22 +29,26 @@ module.exports = env => {
                                 presets: [
                                     ["@babel/preset-env", // 将es6转换成js
                                         {
-                                            // useBuiltIns: 'usage', // 按需加载polyfill  3个参数  false:引入所有的polyfill  entry：自己在入口引入                                   corjs
-                                            // corejs:{version:3}, // 指定corejs的版本号 2或者3
-                                            targets:{ // 指定要兼容的浏览器
-                                                // chrome:'60',
-                                                // firefox:'60',
-                                                // ie:'9',
-                                                // safari:'10',
-                                                // edge:'17'
-                                            }
+                                            useBuiltIns: 'usage', // 按需加载polyfill  3个参数  false:手动引入  entry：自己在入口引入 usage：按需引入                             corjs
+                                            corejs:{version:3}, // 指定corejs的版本号 2或者3
+                                            targets: '>0.25%'
                                         }
                                     ],
                                     "@babel/preset-react" // 将jsx转换成js
                                 ],
                                 plugins: [
+                                    // 自动将polyfill的文件按照runtime的方式引入
+                                    [
+                                        '@babel/plugin-transform-runtime',
+                                        {
+                                            corejs:3,
+                                            helepers:true, // 是否将公共的代码提取出来
+                                            regenerator:true
+                                        }
+                                    ],
                                     ["@babel/plugin-proposal-decorators", {legacy: true}], //
-                                    ["@babel/plugin-proposal-class-properties", {loose: true}] // 
+                                    ["@babel/plugin-proposal-class-properties", {loose: true}]
+                                    // 编译出来的对象的属性设置方式不一样  true: p.age = x false:Object.prototype(p,age,{...})
                                 ]
                             }
                         },
@@ -72,38 +71,22 @@ module.exports = env => {
                 ]
             },
             plugins: [
-                // sourceMap
-                // new webpack.SourceMapDevToolPlugin({
-                //       append: '\n//# sourceMappingURL=http://127.0.0.1:8081/[url]',
-                //       filename: '[file].map',
-                // }),
                 new HtmlWebpackPlugin({
                     template:'./src/index.html'
                 }),
-                // 引入插件的一种方式
-                // new webpack.ProvidePlugin({
-                //     _: 'lodash'
-                // }),        
-                // 引入插件的另一种方式
-                // new HtmlWebpackExternalsPlugin({
-                //    externals: {
-                //      module: 'lodash',
-                //      entry: 'http://baidu.com',
-                //      global: '_',
-                //    }
-                // })
             ],
             devServer: {
                 contentBase: path.resolve(__dirname, 'static'), // 当前目录下的文件夹作为公共资源使用
                 writeToDisk:true, // 打包后的文件写到硬盘上
                 compress:true, // 是否启动压缩
                 port:8080, // 指定HTTP服务器的端口号
-                open:true, // 是否自动打开浏览器
-                // publicPath: '/assets' // 指定浏览器访问的地址后缀： 一般是 http://localhost:8080  加上参数之后访问的地址会变成http://localhost:8080/assets
+                open:false, // 是否自动打开浏览器
+            },
+            watch:true, // webpack4,
+            watchOptions: { // 监听选项
+                ignored: /node_modules/,
+                aggregateTimeout:300, // 变化300ms之后再执行，防抖
+                poll:1000, // 
             }
         })
 }
-
-// resolve  会把相对路径转换成绝对路径，  join只是连接   参考nodeapi，或者webpack自定的函数
-// mode：支持各种模式
-// publicPath详解 https://juejin.cn/post/6844903601060446221
