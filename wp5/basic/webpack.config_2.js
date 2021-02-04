@@ -11,9 +11,7 @@ module.exports = env => {
             devtool: 'source-map', // 映射方式
             output: {
                 path: path.resolve(__dirname, 'dist'), // __dirname 表示文件的绝对路径,一个全局变量
-                // filename: 'bundle.js', // 没有hash
-                filename: '[name].[hash:10].js', // 文件名增加hash
-                // chunkFileName:'[name].[hash:10].js' // 打包出来的公共文件，或者动态import的文件  生成的文件名根据文件路径生成
+                filename: 'bundle.js',
             },
             module: {
                 rules:[
@@ -83,6 +81,11 @@ module.exports = env => {
                 compress:true, // 是否启动压缩
                 port:8080, // 指定HTTP服务器的端口号
                 open:false, // 是否自动打开浏览器
+                // before(app) { // 直接代理请求app就是express的app
+                //     app.get('/api/users',(req,res) => {
+                //         res.json([{name:1}]);
+                //     });
+                // },
                 proxy:{
                     '/api': {
                         target: 'http://localhost:3000',
@@ -92,5 +95,11 @@ module.exports = env => {
                     }
                 }
             },
+            watch:true, // webpack4,
+            watchOptions: { // 监听选项
+                ignored: /node_modules/,
+                aggregateTimeout:300, // 变化300ms之后再执行，防抖
+                poll:1000, // 
+            }
         })
 }

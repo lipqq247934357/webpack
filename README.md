@@ -26,7 +26,16 @@ webpack
     3.expose-loader(没啥用)
     4.CDN
 
-# 六：
+# 六：环境变量配置
+
+# 七：模式
+
+# 八：watch
+    chunk怎么处理
+    每个入口一般都会生成一个chunk
+    分析入口，分析模块，生成模块，生成chunk，产出assets
+
+
 
 
 # 获取图片的方式

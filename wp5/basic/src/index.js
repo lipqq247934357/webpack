@@ -24,3 +24,7 @@ let p = new Promise(function (resolve){
 console.log(p);
 let aa = Array.from(new Set([1,2,3]));
 console.log('111');
+
+import('./js/utils').then(value => {
+    console.log(value);
+})
