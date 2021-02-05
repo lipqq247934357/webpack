@@ -1,3 +1,12 @@
 body {
     background: #cccccc;
+    display: flex;
+}
+
+.aaaa{
+    display: flex;
+}
+
+::placeholder{
+    color: #000;
 }

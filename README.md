@@ -55,3 +55,16 @@ babel-preset-env  将es6语法树转化成es5语法树
 # 预设和插件的关系
 预设包含多个插件
 
+# 配置文件写法
+.postcssrc
+postcss.config.js
+.json
+直接写在webpack.config.js里面
+
+
+# 修改css整个chunkHash的值会发生变化吗？
+    会，因为他们属于一个chunk
+# 动态import，chunkHash的值会发生变化吗？
+    不会，因为动态import 是一个新的chunk
+# 内容如果没有发生变化的话，hash值会发生变化吗？
+    不会，所有文件没变，hash值就不会变
