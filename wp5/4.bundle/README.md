@@ -12,4 +12,4 @@
     es6+es6  都转成common
     es6+common es6转成common
 
-## 动态模块
+  
