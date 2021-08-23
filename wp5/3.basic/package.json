@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch",
-    "start": "webpack serve",
-    "build:local": " cross-env mode=development webpack"
+    "build": "cross-env mode=development webpack",
+    "start": "webpack serve"
   },
   "keywords": [],
   "author": "",
@@ -36,7 +35,8 @@
     "sass-loader": "^10.1.1",
     "webpack": "^5.20.2",
     "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "cross-env": "^7.0.3"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.12.13",

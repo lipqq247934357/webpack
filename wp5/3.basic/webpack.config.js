@@ -17,7 +17,7 @@ module.exports = env => {
             //     new TerserPlugin(), // 压缩js
             //   ],
             // },
-            mode: 'development', // 
+            mode: process.env.mode || 'development', // 
             devtool: 'source-map', // 映射方式
             output: {
                 path: path.resolve(__dirname, 'dist'), // __dirname 表示文件的绝对路径,一个全局变量
