@@ -1,0 +1,1082 @@
+.py-mask {
+	background: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding-top: 40px;
+	z-index: 10000;
+}
+
+.py-border {
+	margin: 0 auto;
+	width: 575px;
+	height: 516px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 16px;
+	background: #FFFFFF;
+	box-shadow: 0px 2px 4px rgba(40, 41, 61, 0.04), 0px 8px 16px rgba(96, 97, 112, 0.16);
+	border-radius: 8px;
+	font-family: Microsoft YaHei;
+	position: relative;
+	box-sizing: content-box;
+
+	.py-title {
+		font-family: Microsoft YaHei;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 12px;
+		line-height: 16px;
+		color: #A3B3C2;
+		margin-bottom: 16px;
+	}
+
+	.py-top-bar-main {
+		width: 100%;
+		height: 142px;
+		padding: 13px;
+		background: #F7F9FB;
+		box-sizing: border-box;
+
+		.py-other-basic-control {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 13px;
+
+			.py-line-item {
+				display: inline-block;
+				margin-right: 12px;
+				cursor: pointer;
+
+				.py-checkbox {
+					display: inline-block;
+					width: 18px;
+					height: 18px;
+					border: 2px solid #C5CFD8;
+					box-sizing: border-box;
+					border-radius: 4px;
+					vertical-align: middle;
+					position: relative;
+					background: #fff;
+
+					&>svg {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+					}
+				}
+
+				span.checked {
+					background: #00BE7B;
+					border: 2px solid #00BE7B;
+				}
+
+				.py-tab {
+					font-family: PingFang SC;
+					font-size: 12px;
+					line-height: 14px;
+					color: #474D6B;
+				}
+			}
+
+			.py-line-item.disable {
+				cursor: not-allowed;
+
+				.py-checkbox {
+					background: #F7F9FB;
+					border: 2px solid #E3EEF9;
+					box-sizing: border-box;
+					border-radius: 4px;
+				}
+
+				.py-tab {
+					color: #A3B3C2;
+				}
+			}
+
+			.py-clear-btn, .py-reset-btn {
+				cursor: pointer;
+				display: inline-block;
+				margin-left: 12px;
+
+				span:nth-child(1) {
+					margin-right: 3px;
+
+					>svg {
+						color: #464D5A;
+						width: 13.7px;
+						height: 16.5px;
+						vertical-align: middle;
+					}
+				}
+
+				span:nth-child(2) {
+					font-family: Microsoft YaHei;
+					font-size: 14px;
+					line-height: 21px;
+					color: #464D5A;
+				}
+			}
+
+			.py-clear-btn {
+				svg {
+					margin-top: -2px;
+				}
+			}
+
+		}
+
+		.py-basic-control {
+			display: flex;
+			justify-content: space-between;
+
+			>div {
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.py-list-item {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+				height: 68px;
+				width: 48px;
+				border-radius: 4px;
+				padding: 8px 4px;
+				margin-right: 12px;
+				cursor: pointer;
+				box-sizing: content-box;
+
+				&.active {
+					background: #E4EBF1;
+				}
+
+				&.disable {
+					cursor: not-allowed;
+				}
+
+				&.last {
+					margin-right: 0;
+				}
+
+				.py-low1 {
+					padding-top: 12px;
+				}
+
+				.py-low2 {
+					padding-top: 14px;
+				}
+
+				span:nth-child(2) {
+					font-family: PingFang SC;
+					font-size: 12px;
+					line-height: 14px;
+					color: #474D6B;
+					opacity: 0.6;
+				}
+			}
+		}
+
+	}
+
+	.py-edit-content {
+		height: 258px;
+		width: 100%;
+		padding: 12px;
+		border: 1px solid #E4EBF1;
+		border-radius: 0px 0px 8px 8px;
+		box-sizing: border-box;
+		overflow: auto;
+	}
+
+	.popOut_pys {
+		width: 72px !important;
+		box-shadow: 0 2px 10px 0 rgba(58, 66, 73, .21);
+		border-radius: 4px;
+		color: #666;
+		font-size: 12px;
+		font-family: STHeiti, huawenheiti;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: #fff;
+		z-index: 5;
+
+		.pys {
+			height: 32px;
+			line-height: 32px;
+			text-align: center
+		}
+
+		.pys:hover {
+			color: #3f92ff;
+			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAWCAYAAAChWZ5EAAAAAXNSR0IArs4c6QAAAuhJREFUSA29VU1IVFEU/s6b0RDDTVREm6AWbYNWBTrTOGlFIg22CCmwNpNvLGiRBOEiWkQ7Z1QiDJKgHyspA0NGZwzCaFEugtq5MtIJikAK9M3tu695z+c0k3/NXHhzzz3n3POd3zuCMq+WR6pybg43RSEChWtSTnyCV2W+4KkCGm1cwWd/uRw4ck/VzM1imHi1DqYIRsuSgVBCbbEUXiqF/Q44BCPbtiNiuIwSEQ231A6CT3jBGfkTgjcPnpSfJc1AoE/twgKSrPluNz7BAMHbCG5pXskcCMTVXtpPMvKdHvDetAlThDOQWyUpQX2f2kfgV15wRnpjIibtXnDtw3934FCPOrC4iBRtb80FqdN8Nd0hnc7Zu0ugR+1BFq2G4Pm4Ke+8wrXS7PawlcUQ81tt3xUoQ+FiqkO6i9kyYOEBU9XFTn1D748XU1yJz5o3E3zYBQeyDOrcv8C1zaUSKFRkLQwG46phJbB8OcFb+awOEnyTLRMscNROpUy5k6+bfzaoeIE1mtcCbSCrMBTqUcF8xWLnuoSK8t4AP/tVpb1f/E6kY/Kw2B0v30jF5DVT1aQv5gRVloVhZuKgV7EQHUioy+yfXnrOGOyZnmdKj6VNeVFIvxDPvqgFbMZGZeEZycqc4g8fEB7vkLe587KNkV8n+BWHSUPffQaOjpky6fBWs7sOaGVG3ZQFHjOiCvuy4FuFH6FkVN47xpRSEkygm41rOjzuGfHhcLpdpjy8VZHLHNA36uKqhcz7BGAC7LR+pTvBdFQ+8O/Ul5lFP2VntEwvlm7GbyCcbJePfzhr+/3LAX1ddzVB7pK0p4RKs35BeBHoIj/iQgim2fah0ZhMu7w1EgUd0DboxFl29m23wQSWkxUtZ+SfDD/qx6Myo8/rXUvvQJ4FjlE/hW6d88CnqqpRu1FwDVnUAS3kiPYaBi5p2l2CSWxGcKRNMi5vA0TREnhtcjrOczo6mfaxyhqYo6fFfri8OuulfwMwLPRs5Eu2awAAAABJRU5ErkJggg==) no-repeat ~'4px/10px'7px;
+			background-color: #f5f6f7;
+		}
+
+	}
+
+	.error-msg {
+		position: absolute;
+		color: red;
+		font-size: 12px;
+		right: 24px;
+		bottom: 90px;
+		z-index: 5;
+	}
+
+	.py-footer {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+
+		>div:nth-child(1) {
+			margin-top: 18px;
+		}
+
+
+		.py-panel {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			height: 100%;
+			font-size: 12px;
+			line-height: 30px;
+			color: #A3B3C2;
+			font-family: Microsoft YaHei;
+
+			>div {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				margin-bottom: 8px;
+			}
+
+			.py-opt {
+				margin: 0 5px;
+				cursor: pointer;
+				position: relative;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				padding: 0 2px;
+				border-radius: 4px;
+				border: 1px solid #ffffff;
+
+				&.py-borders {
+					border: 1px solid #eff1f2;
+					border-radius: 4px;
+					padding: 0 10px;
+				}
+
+				&:hover {
+					background-color: rgb(233, 239, 245);
+
+					.tip {
+						display: block;
+					}
+
+					.style-select {
+						display: block !important;
+					}
+				}
+
+				.tip {
+					color: white;
+					font-size: 12px;
+					border-radius: 3px;
+					padding: 2px;
+					position: absolute;
+					top: -30px;
+					left: 50%;
+					transform: translateX(-50%);
+					display: none;
+					line-height: 16px;
+
+					.py-down {
+						position: relative;
+						left: 50%;
+						transform: translateX(-50%);
+						width: 0;
+						margin-top: -2px;
+						border: 5px solid transparent;
+						border-top: 5px solid rgba(0, 0, 0, 0.85);
+
+					}
+
+					.text {
+						text-align: center;
+						min-width: 60px;
+						position: relative;
+						background: rgba(0, 0, 0, 0.85);
+						padding: 4px 2px;
+						border-radius: 4px;
+					}
+				}
+
+				.style-select:hover {
+					display: block !important;
+				}
+
+				.choice {
+					position: relative;
+					width: 20px;
+					height: 25px;
+					color: #464D5A;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					line-height: 25px;
+
+					svg {
+						position: absolute;
+						top: 0;
+						z-index: 1;
+						width: 20px;
+						height: 16px;
+						color: #464D5A;
+					}
+
+					.box {
+						position: absolute;
+						top: 18px;
+						left: 50%;
+						transform: translateX(-50%);
+						width: 14px;
+						height: 3px;
+						background: transparent;
+					}
+				}
+
+				.py-down {
+					font-size: 12px;
+					margin-left: 4px;
+
+					svg {
+						width: 10px;
+						height: 6px;
+					}
+				}
+
+				.pinyinFamilyPanel,
+				.pinyinSizePanel,
+				.pinyinColorPanel,
+				.fontFamilyPanel,
+				.fontSizePanel,
+				.fontColorPanel {
+					position: absolute;
+					z-index: 3;
+					min-width: 100px;
+					top: 24px;
+					left: 0;
+					background: rgba(255, 255, 255, 0);
+					padding-top: 10px;
+
+					> div {
+						box-shadow: 0px 5px 10px rgba(40, 41, 61, 0.08);
+						background: white;
+						padding: 7px 0 5px;
+						border-radius: 8px;
+						ul {
+							margin: 0;
+							padding: 0;
+							max-height: 150px;
+							overflow: auto;
+	
+							li {
+								list-style-type: none;
+								margin-bottom: 0;
+								padding: 12px 10px;
+								display: flex;
+								color: #474D6B;
+								font-size: 12px;
+								line-height: 14px;
+								align-items: center;
+								white-space: nowrap;
+								max-width: 210px;
+	
+								&:hover {
+									background: #F1F3F4;
+								}
+	
+								.color-box {
+									display: inline-block;
+									width: 16px;
+									height: 16px;
+									border-radius: 4px;
+									vertical-align: middle;
+									margin: 0 10px 0 5px;
+	
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+			.font-width-area {
+				margin: 0 8px;
+
+				>input {
+					width: 60px;
+					height: 32px;
+					border: 1px solid #E4EBF1;
+					box-sizing: border-box;
+					border-radius: 6px;
+				}
+
+				>input:focus {
+					outline-color: #E4EBF1;
+				}
+			}
+		}
+
+
+		>div:nth-child(2) {
+			margin-top: 56px;
+		}
+
+		.py-checkbox {
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			border: 2px solid #C5CFD8;
+			box-sizing: border-box;
+			border-radius: 4px;
+			vertical-align: middle;
+			position: relative;
+			background: #fff;
+
+			&>svg {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+
+		span.checked {
+			background: #00BE7B;
+			border: 2px solid #00BE7B;
+		}
+
+
+		.py-ok-btn,
+		.py-cancel-btn {
+			width: 77px;
+			height: 32px;
+			border: 0;
+			line-height: 150%;
+			cursor: pointer;
+			outline: none;
+		}
+
+		.py-cancel-btn {
+			color: #A3B3C2;
+			background: transparent;
+		}
+
+		.py-ok-btn {
+			background: #00BE7B;
+			border-radius: 6px;
+			color: white;
+		}
+	}
+
+	.hide {
+		display: none !important;
+	}
+
+	.hide-remain {
+		opacity: 0;
+	}
+	.py-hide-remain {
+		visibility: hidden;
+	}
+}
+
+// 单独的样式
+.py-item-wrapper {
+
+	.hide {
+		display: none;
+	}
+	
+	.hide-remain {
+		opacity: 0;
+	}
+}
+
+
+// 操作样式
+.py-item-wrap-0 {
+	.py-first-input {
+		display: inline-block;
+		vertical-align: top;
+		z-index: 1;
+		position: absolute;
+		background-color: transparent;
+		border: 0;
+		caret-color: #333;
+		outline: none;
+		font-size: 1em;
+		width: 8em;
+	}
+
+	.py-first-input::placeholder {
+		color: #A3B3C2;
+		font-size: 1em;
+		font-family: PingFang SC;
+		line-height: 1.2em
+	}
+
+	> span {
+		.py-pinyin {
+			.pys-chooser {
+				position: absolute;
+				z-index: 3;
+				top: 50%;
+				transform: translateY(-50%);
+				right: -5px;
+				width: 4px;
+				height: 8px;
+				display: -webkit-box;
+				display: flex;
+				flex-wrap: wrap;
+
+				.py-down {
+					line-height: 5px;
+				}
+
+				.py-masks {
+					position: absolute;
+					width: 4px;
+					height: 8px
+				}
+			}
+		}
+
+		.py-word-input {
+			width: 1em;
+			cursor: text;
+			z-index: 2;
+			position: absolute;
+			background-color: transparent;
+			border: 0;
+			top: -0.1em;
+			caret-color: #333;
+			outline: none;
+		}
+	}
+
+}
+
+// 操作&浏览通用样式
+.py-item-wrap-0 {
+	line-height: 1;
+
+	&.py-equal-width {
+		> span {
+			width: 1em;
+		}
+	}
+
+	&.py-not-equal-width {
+		> span {
+			margin-right: 0.3em;
+		}
+	}
+
+	> span {
+		display: inline-block;
+		text-align: center;
+		margin-bottom: 0.15em;
+		cursor: default;
+		line-height: 0;
+
+		.py-pinyin {
+			text-align: center;
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 2em;
+			white-space: nowrap;
+
+			.py-wrap {
+				line-height: 1em;
+				margin: 0;
+				display: inline-block;
+				min-width: 1em;
+
+				&:focus-visible {
+					outline: none;
+				}
+			}
+		}
+
+		.py-word {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			cursor: default;
+			line-height: 1;
+
+			> span {
+				width: 1.8em;
+				height: 1.2em;
+				white-space: nowrap;
+			}
+			> span > span:nth-child(1){
+				display: inline-block;
+			}
+		}
+
+	}
+}
+
+// 操作样式
+.py-item-wrap-1 {
+
+	.py-first-input {
+		display: inline-block;
+		vertical-align: top;
+		z-index: 1;
+		position: absolute;
+		background-color: transparent;
+		border: 0;
+		caret-color: #333;
+		outline: none;
+		font-size: 1em;
+		width: 8em;
+	}
+
+	.py-first-input.active {
+		color: #666
+	}
+
+	.py-first-input::placeholder {
+		color: #A3B3C2;
+		font-size: 1em;
+		font-family: PingFang SC;
+		line-height: 1.2em
+	}
+
+	> span {
+		.py-word {
+			.pys-chooser {
+				position: absolute;
+				z-index: 3;
+				top: 50%;
+				transform: translateY(-50%);
+				right: -4px;
+				width: 4px;
+				height: 8px;
+				display: -webkit-box;
+				display: flex;
+				flex-wrap: wrap;
+				z-index: 3;
+
+				.py-down {
+					line-height: 5px;
+				}
+
+				.py-masks {
+					position: absolute;
+					width: 4px;
+					height: 8px;
+					z-index: 2
+				}
+			}
+
+			.py-word-input {
+				font-size: 1em;
+				width: 6px;
+				z-index: 2;
+				position: absolute;
+				top: 0;
+				right: -12px;
+				height: 1em;
+				background-color: transparent;
+				border: 0;
+				outline: none;
+				caret-color: #333;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			.py-word-input.active {
+				color: #666
+			}
+		}
+	}
+}
+
+// 操作&浏览通用样式
+.py-item-wrap-1 {
+	overflow-y: auto;
+	scrollbar-width: none;
+	width: 100%;
+
+	> span {
+		display: inline-block;
+		text-align: center;
+		margin-right: 6px;
+		margin-bottom: 0.4em;
+		cursor: default;
+
+		.py-word {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+
+			.py-pinyin-span {
+				text-align: center;
+			}
+
+			.py-wrap {
+				min-width: 10px;
+				display: inline-block;
+
+				&:focus-visible {
+					outline: none;
+				}
+			}
+		}
+	}
+}
+
+// 操作样式
+.py-item-wrap-2 {
+
+	.py-first-input {
+		display: inline-block;
+		vertical-align: top;
+		z-index: 1;
+		position: absolute;
+		background-color: transparent;
+		border: 0;
+		caret-color: #333;
+		outline: none;
+		font-size: 1em;
+		width: 8em;
+	}
+
+	.py-first-input.active {
+		color: #666
+	}
+
+	.py-first-input::placeholder {
+		color: #A3B3C2;
+		font-size: 1em;
+		font-family: PingFang SC;
+		line-height: 1.2em
+	}
+
+	> span {
+		.py-word {
+			.pys-chooser {
+				position: absolute;
+				z-index: 3;
+				top: 50%;
+				transform: translateY(-50%);
+				right: -4px;
+				width: 4px;
+				height: 8px;
+				display: -webkit-box;
+				display: flex;
+				flex-wrap: wrap;
+				z-index: 3;
+
+				.py-down {
+					line-height: 5px;
+				}
+
+				.py-masks {
+					position: absolute;
+					width: 4px;
+					height: 8px;
+					z-index: 2
+				}
+			}
+
+			.py-word-input {
+				font-size: 1em;
+				width: 6px;
+				z-index: 2;
+				position: absolute;
+				top: 0;
+				right: -12px;
+				height: 1em;
+				background-color: transparent;
+				border: 0;
+				outline: none;
+				caret-color: #333;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			.py-word-input.active {
+				color: #666
+			}
+		}
+	}
+}
+
+// 操作&浏览通用样式
+.py-item-wrap-2 {
+	overflow-y: auto;
+	scrollbar-width: none;
+	width: 100%;
+
+	> span {
+		display: inline-block;
+		text-align: center;
+		height: 1.8em;
+		line-height: 1.6em;
+		padding-right: 10px;
+		margin-bottom: 1em;
+		vertical-align: baseline;
+		cursor: default;
+		background: url('https://fe-sta.aixuexi.com/diy/pinyin/2.0.0/dist/line_bg.png') repeat;
+		background-size: 100% 100%;
+
+		.py-word {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+
+			.py-pinyin-span {
+				text-align: center;
+			}
+
+			.py-wrap {
+				min-width: 10px;
+				display: inline-block;
+				line-height: 1em;
+
+				&:focus-visible {
+					outline: none;
+				}
+			}
+		}
+	}
+}
+
+
+// 操作样式
+.py-item-wrap-3 {
+
+	.py-first-input {
+		display: inline-block;
+		vertical-align: top;
+		z-index: 1;
+		position: absolute;
+		background-color: transparent;
+		border: 0;
+		caret-color: #333;
+		outline: none;
+		font-size: 1em;
+		width: 8em;
+
+		&.active {
+			color: #666;
+		}
+	}
+
+	.py-first-input::placeholder {
+		color: #A3B3C2;
+		font-size: 1em;
+		font-family: PingFang SC;
+		line-height: 1.2em
+	}
+
+	> span {
+		.py-word {
+			.py-word-input {
+				font-size: 1em;
+				width: 6px;
+				z-index: 2;
+				position: absolute;
+				top: 0;
+				right: -12px;
+				height: 1em;
+				background-color: transparent;
+				border: 0;
+				outline: none;
+				caret-color: #333;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			.py-word-input.active {
+				color: #666
+			}
+		}
+	}
+}
+
+// 操作&浏览通用样式
+.py-item-wrap-3 {
+	overflow-y: auto;
+	scrollbar-width: none;
+	width: 100%;
+
+	> span {
+		display: inline-block;
+		text-align: center;
+		height: 1.8em;
+		width: 1.8em;
+		line-height: 1.8em;
+		margin-bottom: 1em;
+		vertical-align: baseline;
+		cursor: default;
+		margin-right: -1px;
+		border: #98A2B2 1px solid;
+		background: url('https://fe-sta.aixuexi.com/diy/pinyin/2.0.0/dist/square_bg.png') repeat;
+		background-size: 100% 100%;
+
+		.py-word {
+			display: inline-block;
+			position: relative;
+		}
+	}
+}
+
+// 操作样式
+.py-item-wrap-4 {
+	.py-first-input {
+		display: inline-block;
+		vertical-align: top;
+		z-index: 1;
+		position: absolute;
+		background-color: transparent;
+		border: 0;
+		caret-color: #333;
+		outline: none;
+		font-size: 1em;
+		width: 8em;
+	}
+
+	.py-first-input::placeholder {
+		color: #A3B3C2;
+		font-size: 1em;
+		font-family: PingFang SC;
+		line-height: 1.2em
+	}
+
+	> span {
+		.py-pinyin {
+			.pys-chooser {
+				position: absolute;
+				z-index: 3;
+				top: 50%;
+				transform: translateY(-50%);
+				right: -5px;
+				width: 4px;
+				height: 8px;
+				display: -webkit-box;
+				display: flex;
+				flex-wrap: wrap;
+
+				.py-down {
+					line-height: 5px;
+				}
+
+				.py-masks {
+					position: absolute;
+					width: 4px;
+					height: 8px
+				}
+			}
+		}
+
+		.py-word-input {
+			width: 1em;
+			height: 1.8em;
+			cursor: text;
+			z-index: 2;
+			position: absolute;
+			background-color: transparent;
+			border: 0;
+			top: -0.1em;
+			caret-color: #333;
+			outline: none;
+		}
+	}
+
+}
+
+// 操作&浏览通用样式
+.py-item-wrap-4 {
+	line-height: 1;
+
+	> span {
+		display: inline-block;
+		text-align: center;
+		margin-bottom: 0.15em;
+		cursor: default;
+		line-height: 0;
+		margin-left: -1px;
+		margin-bottom: 0.5em;
+
+		.py-pinyin {
+			width: 100%;
+			text-align: center;
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+			white-space: nowrap;
+			background: url('https://fe-sta.aixuexi.com/diy/pinyin/2.0.0/dist/line_bg.png') repeat;
+			background-size: 100% 100%;
+			border-right: #98A2B2 1px solid;
+			border-left: #98A2B2 1px solid;
+			box-sizing: border-box;
+
+			.py-wrap {
+				margin: 0;
+				display: inline-block;
+				min-width: 1em;
+				height: 1.7em;
+				line-height: 1.3em;
+
+				&:focus-visible {
+					outline: none;
+				}
+			}
+		}
+
+		.py-word {
+			margin-top: -1px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			cursor: default;
+			min-width: 1.8em;
+			height: 1.8em;
+			line-height: 1.8em;
+			border: #98A2B2 1px solid;
+			border-top: 0;
+			background: url('https://fe-sta.aixuexi.com/diy/pinyin/2.0.0/dist/square_bg.png') repeat;
+			background-size: 100% 100%;
+
+			> span {
+				white-space: nowrap;
+			}
+			> span > span:nth-child(1){
+				display: inline-block;
+			}
+		}
+
+	}
+}
