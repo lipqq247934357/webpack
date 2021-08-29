@@ -11,5 +11,3 @@
     common+es6 es6转化成common
     es6+es6  都转成common
     es6+common es6转成common
-
-  
