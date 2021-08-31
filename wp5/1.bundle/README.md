@@ -1,13 +1,49 @@
-## 模块ID
-    相对于根目录的相对路径
-    index.js  ./src/index.js
-    title.js  ./src/title.js
-    jQuery    node_modules/jquery/dist/jquery.js
+# RECORD
 
-## 如果文件有import export是es module，需要进行处理
+## Symbol.toStringTag
 
-## 模块转换
-    common+common 不需要处理
-    common+es6 es6转化成common
-    es6+es6  都转成common
-    es6+common es6转成common
+```js
+let myExports = {};
+console.log(Object.prototype.toString.call(myExports));
+Object.defineProperty(myExports, Symbol.toStringTag, { value: "Module" });
+console.log(Object.prototype.toString.call(myExports)); //[object Module]
+```
+
+## defineProperty
+
+```js
+let obj = {};
+var ageValue = 10;
+
+Object.defineProperty(obj, "age", {
+  //writable: true, //是否可修改
+  //value: 10, //writeable 和 set不能混用
+  get() {
+    return ageValue;
+  },
+  set(newValue) {
+    ageValue = newValue;
+  },
+
+  enumerable: true, //是否可枚举
+  configurable: true, //是否可配置可删除
+});
+
+console.log(obj.age);
+obj.age = 20;
+console.log(obj.age);
+```
+
+## bundle
+
+### 模块转换,如果文件有 import export 是 es module，需要进行处理
+
+common+common 不需要处理  
+common+es6 es6 转化成 common  
+es6+es6 都转成 common  
+es6+common es6 转成 common  
+
+### 转化逻辑
+
+  1.将es6模块转化成commonjs模块  
+  2.根据import()动态切割代码  

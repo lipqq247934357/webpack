@@ -8,13 +8,6 @@ module.exports = {
         filename: "main.js",
     },
     module: {
-        rules: [
-            {
-                test: /\.js$/,
-                use: [path.resolve('./loaders2/babel-loader.js')],
-                include:path.resolve('src')
-            }
-        ]
     },
     devServer: {},
 };
