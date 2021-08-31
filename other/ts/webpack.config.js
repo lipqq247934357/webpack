@@ -12,6 +12,9 @@ module.exports = env => {
                 path: path.resolve(__dirname, 'dist'), // __dirname 表示文件的绝对路径,一个全局变量
                 filename: 'bundle.js', // 文件名增加hash hash,chunkHash,contentHash
             },
+            resolve: {
+                extensions: ['.js', '.ts', '.tsx'],
+            },
             module: {
                 rules:[
                     {
