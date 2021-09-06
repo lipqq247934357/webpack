@@ -4,6 +4,10 @@
  * @param name
  */
 
+interface Person {
+  name:string
+}
+
 // 泛型函数
 function log<T>(arg: T): T {
   return arg;
