@@ -11,10 +11,6 @@
 
 ## 调试 webpack
 
-loader 为什么是倒叙的？
+    logwebpack结果
 
-## 模块 ID(moduleId) 代码块 ID（chunkId）
-
-例如： ./src/title.js
-模块 ID: ./src/title.js
-chunkId： src_title_js
+## 调试 webpack
