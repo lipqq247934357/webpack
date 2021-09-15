@@ -12,6 +12,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        use: [
+          'babel-loader'
+        ]
+      },
+      {
         test: /\.css$/,
         use: [
           'style-loader',
@@ -35,7 +41,14 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Output Management'
+      title: 'Output Management',
+      template: './index.html'
     })
   ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    hot: true
+  },
 };

@@ -161,7 +161,7 @@ devtool: 'inline-source-map',
 "watch": "webpack --watch",
 ```
 
-### 使用webpack-dev-server
+### 使用webpack-dev-server(WDS)
 
 webpack-dev-server是直接将内容放到内存中，不会去修改dist目录中的文件；
 npm install --save-dev webpack-dev-server
@@ -175,4 +175,9 @@ npm install --save-dev webpack-dev-server
   },
 // 启动
 "serve": "webpack serve"
+```
+
+### 使用webpack-dev-middleware(WDM)
+
+```js
 ```
