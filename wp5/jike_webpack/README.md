@@ -180,4 +180,9 @@ npm install --save-dev webpack-dev-server
 ### 使用webpack-dev-middleware(WDM)
 
 ```js
+npm install --save-dev express webpack-dev-middleware
 ```
+
+2.参考 server.js文件
+
+## 文件hash
