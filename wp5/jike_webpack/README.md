@@ -30,9 +30,11 @@ npm i @babel/core @babel/preset-env babel-loader -D
 增加.babelrc
 
 ```js
+.babelrc >>
 {
     "presets": ["@babel/preset-env"]
 }
+webpack.config.js  >>
       {
         test: /\.js$/,
         use: [
@@ -47,7 +49,9 @@ npm i react react-dom @babel/preset-react -D
 增加.babelrc
 
 ```js
+.babelrc >>
 "presets": ["@babel/preset-env","@babel/babel-preset"]
+webpack.config.js  >>
 {
     "presets": ["@babel/preset-env"]
 }
@@ -77,10 +81,9 @@ npm i react react-dom @babel/preset-react -D
 
 ```js
       {
-        test: /\.css$/,
+        test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'style-loader',
-          'css-loader'
+          'file-loader'
         ]
       }
 ```
@@ -101,7 +104,18 @@ npm i react react-dom @babel/preset-react -D
 
 ## 管理输出
 
-### 多入口，多出口
+### 1.单入口
+
+```js
+  entry: './src/index.js',
+  mode: "development",
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+```
+
+### 2.多入口，多出口
 
 ```js
   entry: {
@@ -111,17 +125,6 @@ npm i react react-dom @babel/preset-react -D
   mode: "development",
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-```
-
-### 单入口
-
-```js
-  entry: './src/index.js',
-  mode: "development",
-  output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
 ```
@@ -153,9 +156,11 @@ new CleanWebpackPlugin(),
 devtool: 'inline-source-map',
 ```
 
+## 使用文件监听
+
 ### 使用观察者模式
 
---watch 的原理是监听文件变更的时间，如果晚于记录的事件重新打包，更新时间；
+--watch 原理是监听文件变更的时间，如果晚于记录的事件重新打包，更新时间；
 
  ```js
 "watch": "webpack --watch",
