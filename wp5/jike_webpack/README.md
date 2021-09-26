@@ -19,6 +19,9 @@
   - [文件hash](#文件hash)
   - [资源内联](#资源内联)
   - [多页面通用打包方案](#多页面通用打包方案)
+  - [tree Shaking](#tree-shaking)
+    - [DCE](#dce)
+    - [tree Shaking原理](#tree-shaking原理)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -228,3 +231,17 @@ npm install --save-dev express webpack-dev-middleware
 ## 资源内联
 
 ## 多页面通用打包方案
+
+## tree Shaking
+
+### DCE
+
+  1.代码不会执行，不可到达
+  2.代码执行的结果不会被用到
+  3.代码只会影响死变量
+
+### tree Shaking原理
+
+    1.ES6模块依赖关系是确定的，和运行时的状态无关，可以进行可靠的静态分析，这就是tree-shaking的基础；
+    2.其他的模块,比如commonjs，amd等都是先加载，然后才导出模块；
+    3.使用其他工具进行词法分析，然后去掉不用的代码；
