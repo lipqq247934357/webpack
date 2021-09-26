@@ -1,3 +1,27 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [readMe](#readme)
+  - [安装](#安装)
+  - [起步](#起步)
+  - [资源管理](#资源管理)
+  - [管理输出](#管理输出)
+    - [1.单入口](#1单入口)
+    - [2.多入口，多出口](#2多入口多出口)
+      - [使用html-webpack-plugin](#使用html-webpack-plugin)
+    - [清理上次打包内容](#清理上次打包内容)
+  - [使用source map](#使用source-map)
+  - [使用文件监听](#使用文件监听)
+    - [使用观察者模式](#使用观察者模式)
+    - [使用webpack-dev-server(WDS)](#使用webpack-dev-serverwds)
+    - [使用webpack-dev-middleware(WDM)](#使用webpack-dev-middlewarewdm)
+  - [文件hash](#文件hash)
+  - [资源内联](#资源内联)
+  - [多页面通用打包方案](#多页面通用打包方案)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # readMe
 
 ## 安装
@@ -152,6 +176,15 @@ new CleanWebpackPlugin(),
 
 ## 使用source map
 
+不使用source map debugger只能看到转化之后的代码，看不到源码，调试体验及其不友好；
+
+source-map关键字&含义:
+  eval:使用eval包裹模块代码，使用sourceURL指定文件地址（指定的是源文件的内容，不产生sourcemap）
+  source-map:产生.map文件
+  cheap:不包含列信息
+  inline:将.map作为DataURI嵌入，不单独生成.map文件
+  module:包含loader的sourcemap,出错了，可以进一步定位到最原始的sourcemap
+
 ```js
 devtool: 'inline-source-map',
 ```
@@ -191,3 +224,7 @@ npm install --save-dev express webpack-dev-middleware
 2.参考 server.js文件
 
 ## 文件hash
+
+## 资源内联
+
+## 多页面通用打包方案
