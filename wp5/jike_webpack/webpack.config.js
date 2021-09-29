@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -8,7 +7,8 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: '/',
+    clean: true
   },
   // devtool: 'inline-source-map',
   module: {
@@ -41,7 +41,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Output Management',
       template: './index.html'

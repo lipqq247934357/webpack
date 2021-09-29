@@ -9,10 +9,10 @@
   - [管理输出](#管理输出)
     - [1.单入口](#1单入口)
     - [2.多入口，多出口](#2多入口多出口)
-      - [使用html-webpack-plugin](#使用html-webpack-plugin)
+    - [使用html-webpack-plugin](#使用html-webpack-plugin)
     - [清理上次打包内容](#清理上次打包内容)
   - [使用source map](#使用source-map)
-  - [使用文件监听](#使用文件监听)
+    - [使用文件监听](#使用文件监听)
     - [使用观察者模式](#使用观察者模式)
     - [使用webpack-dev-server(WDS)](#使用webpack-dev-serverwds)
     - [使用webpack-dev-middleware(WDM)](#使用webpack-dev-middlewarewdm)
@@ -22,6 +22,11 @@
   - [tree Shaking](#tree-shaking)
     - [DCE](#dce)
     - [tree Shaking原理](#tree-shaking原理)
+  - [scope Hoisting](#scope-hoisting)
+  - [dynamic import](#dynamic-import)
+  - [支持 eslint](#支持-eslint)
+    - [eslint+CI/CD](#eslintcicd)
+  - [webpack打包组件和库](#webpack打包组件和库)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -156,7 +161,7 @@ webpack.config.js  >>
   },
 ```
 
-#### 使用html-webpack-plugin
+### 使用html-webpack-plugin
 
 npm install --save-dev html-webpack-plugin
 
@@ -177,6 +182,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 new CleanWebpackPlugin(),
 ```
 
+webpack5:
+
+```js
+  output: {
+    clean:true
+  }
+```
+
 ## 使用source map
 
 不使用source map debugger只能看到转化之后的代码，看不到源码，调试体验及其不友好；
@@ -192,7 +205,7 @@ source-map关键字&含义:
 devtool: 'inline-source-map',
 ```
 
-## 使用文件监听
+### 使用文件监听
 
 ### 使用观察者模式
 
@@ -245,3 +258,25 @@ npm install --save-dev express webpack-dev-middleware
     1.ES6模块依赖关系是确定的，和运行时的状态无关，可以进行可靠的静态分析，这就是tree-shaking的基础；
     2.其他的模块,比如commonjs，amd等都是先加载，然后才导出模块；
     3.使用其他工具进行词法分析，然后去掉不用的代码；
+
+## scope Hoisting
+
+  将模块代码直接写入模块中，降低代码量和内存使用
+
+## dynamic import
+
+  commonjs: require.ensure
+  es6: 动态import（需要babel支持）
+
+## 支持 eslint
+
+### eslint+CI/CD
+
+  1.husky
+  2.eslint-loader
+
+## webpack打包组件和库
+
+  1.library:指定库的全局变量
+  2.libraryTarget:支持库引入的方式
+  可以参考拼音项目
