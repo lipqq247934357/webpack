@@ -12,11 +12,13 @@
     - [使用html-webpack-plugin](#使用html-webpack-plugin)
     - [清理上次打包内容](#清理上次打包内容)
   - [使用source map](#使用source-map)
-    - [使用文件监听](#使用文件监听)
-    - [使用观察者模式](#使用观察者模式)
+  - [使用文件监听](#使用文件监听)
+    - [--watch](#--watch)
     - [使用webpack-dev-server(WDS)](#使用webpack-dev-serverwds)
     - [使用webpack-dev-middleware(WDM)](#使用webpack-dev-middlewarewdm)
-  - [文件hash](#文件hash)
+    - [热更新原理](#热更新原理)
+  - [代码分离](#代码分离)
+  - [缓存&文件hash](#缓存文件hash)
   - [资源内联](#资源内联)
   - [多页面通用打包方案](#多页面通用打包方案)
   - [tree Shaking](#tree-shaking)
@@ -205,11 +207,11 @@ source-map关键字&含义:
 devtool: 'inline-source-map',
 ```
 
-### 使用文件监听
+## 使用文件监听
 
-### 使用观察者模式
+### --watch
 
---watch 原理是监听文件变更的时间，如果晚于记录的事件重新打包，更新时间；
+原理是监听文件变更的时间，如果晚于记录的时间重新打包，更新时间；
 
  ```js
 "watch": "webpack --watch",
@@ -237,9 +239,27 @@ npm install --save-dev webpack-dev-server
 npm install --save-dev express webpack-dev-middleware
 ```
 
+### 热更新原理
+
+  1.webpack Compile: 将js编译成bundle
+  2.HMR Server: 将热更新的文件输出给HMR Runtime
+  3.Bundle Server: 提供文件在浏览器的访问
+  4.HMR Runtime: 会被注入到浏览器，更新文件的变化
+  5.bundle.js 打包输出的文件
+  
 2.参考 server.js文件
 
-## 文件hash
+## 代码分离
+
+  1.入口起点：使用 entry 配置手动地分离代码
+  2.防止重复：使用 Entry dependencies 或者 SplitChunksPlugin 去重和分离 chunk
+  3.动态导入：通过模块的内联函数调用来分离代码
+
+## 缓存&文件hash
+
+  1.hash:和整个项目的构建相关，只要有文件修改，hash值就会改变
+  2.chunkHash:每个chunk上的内容发生变化，修改hash值
+  3.contentHash:当前文件的内容发生变化，修改这个文件的hash值
 
 ## 资源内联
 
@@ -277,6 +297,16 @@ npm install --save-dev express webpack-dev-middleware
 
 ## webpack打包组件和库
 
-  1.library:指定库的全局变量
-  2.libraryTarget:支持库引入的方式
-  可以参考拼音项目
+```js
+output: {
+  filename: 'bundle.js',
+  path: path.resolve(__dirname, 'dist'),
+  publicPath: '/',
+  clean: true,
+  library: {
+   name: 'PinYin',
+   type: 'umd',
+   export: 'default'
+  }
+ }
+```
