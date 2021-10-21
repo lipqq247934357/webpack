@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "webpack": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1"
+  }
 }
