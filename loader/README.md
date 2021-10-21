@@ -26,3 +26,8 @@ compose = (f,g) => (...args) => f(g(args));
 一个函数
 
 ## [loader-runner](https://github.com/webpack/loader-runner)
+
+## loader异常处理
+
+直接抛出异常
+2.其他的暂时没看
