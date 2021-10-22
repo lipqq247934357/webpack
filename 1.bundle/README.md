@@ -38,12 +38,11 @@ console.log(obj.age);
 
 ### 模块转换,如果文件有 import export 是 es module，需要进行处理
 
-common+common 不需要处理  
-common+es6 es6 转化成 common  
-es6+es6 都转成 common  
-es6+common es6 转成 common  
+将es6 module转化成common模块
 
 ### 转化逻辑
 
   1.将es6模块转化成commonjs模块  
-  2.根据import()动态切割代码  
+  2.根据import()动态切割代码
+
+### 动态import通过创建script标签动态添加模块，然后执行

@@ -9,7 +9,7 @@
         }
         apply(compiler) { // 必须要有apply方法
             compiler.hooks.xxx.tap(() => { // 调用传入的compiler的hooks对应阶段，
-                // 在回调函数中执行对应声明周期的操作
+                // 在回调函数中执行对应生命周期的操作
             });
         }
     }
