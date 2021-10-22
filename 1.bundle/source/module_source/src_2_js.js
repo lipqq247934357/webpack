@@ -1,4 +1,5 @@
 "use strict";
+// 这个代码会执行对应的回调方法，更新module
 (self["webpackChunk_5_webpack"] = self["webpackChunk_5_webpack"] || []).push([["src_2_js"],{
 
 /***/ "./src/2.js":
