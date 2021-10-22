@@ -1,14 +1,11 @@
 (() => {
-  var modules = { // 模块 模块id是文件路径
-    './src/title.js': (module, exports, require) => { // require是引用别的模块使用的
-      // title的代码
-      // 不管是common.js还是es modules最后都会编译成common.js 如果原来是es module的话用
-      // r方法处理下，标识这个模块是es module
+  var modules = {
+    './src/title.js': (module, exports, require) => {
       require.r(exports);
       const DEFAULT_EXPORT = 'title_name';
       const age = 'title_age';
       require.d(exports, {
-        default:() => DEFAULT_EXPORT,
+        default: () => DEFAULT_EXPORT,
         age: () => age
       });
     }
@@ -16,10 +13,10 @@
 
   var cache = {};
 
-  function require(moduleId) { // require函数
+  function require(moduleId) {
 
-    if (cache[moduleId]) { // 先看缓存里有没有已经缓存的模块对象
-      return cache[moduleId].exports; // 如果有就直接返回
+    if (cache[moduleId]) {
+      return cache[moduleId].exports;
     }
 
     // 默认空对象
@@ -37,13 +34,13 @@
     Object.defineProperty(exports, '__esModule', { value: true });
   }
 
-  // 
+  // 给exports的模块key改成函数式调用，这样保存的值不变
   require.d = (exports, definition) => {
     for (let key in definition) {
-      Object.defineProperty(exports, key, { 
-        enumerable:true,
-        get:definition[key]
-       });
+      Object.defineProperty(exports, key, {
+        enumerable: true,
+        get: definition[key]
+      });
     }
   }
 
