@@ -244,6 +244,7 @@
             var url = __webpack_require__.p + __webpack_require__.u(chunkId);
             // create error before stack unwound to get useful stacktrace later
             var error = new Error();
+            // 加载完之后回调函数执行其他更新
             var loadingEnded = (event) => {
               if (__webpack_require__.o(installedChunks, chunkId)) {
                 installedChunkData = installedChunks[chunkId];
