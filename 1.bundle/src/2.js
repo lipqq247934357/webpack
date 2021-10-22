@@ -1,2 +1,5 @@
-const a = 1111;
+let a = { name: 1 };
+setTimeout(() => {
+    a = { name: 2 }
+}, 100);
 export default a;
