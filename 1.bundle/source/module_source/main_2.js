@@ -225,7 +225,7 @@
       "main": 0
     };
 
-    // chunkId, []
+    // chunkId, [] f的属性
     __webpack_require__.f.j = (chunkId, promises) => {
       // JSONP chunk loading for javascript
       var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
