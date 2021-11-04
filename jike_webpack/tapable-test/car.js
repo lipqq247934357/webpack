@@ -40,7 +40,7 @@ myCar.hooks.accelerate.call(10);
 console.time('cost');
  
 //执行异步钩子
-myCar.hooks.calculateRoutes.promise('Async', 'hook', 'demo').then(() => {
+myCar.hooks.calculateRoutes.promise('Async1111', 'hook2222', 'demo3333').then(() => {
     console.timeEnd('cost');
 }, err => {
     console.error(err);
