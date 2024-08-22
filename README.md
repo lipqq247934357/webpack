@@ -33,7 +33,7 @@
   }
 ```
 
-## module 里面的配置
+### module 里面的配置
 
 解析的这些东西一般都被底层框架封装好了，可以看看资料，或者 chatGpt 问问，没有太多的复杂东西；
 而且我配置内容学过了好多遍了，这些内容到时候再百度也是比较好的；
@@ -41,12 +41,12 @@
 
 1.解析 css，less， 2.解析 js，ts 3.图片处理 4.处理文件
 
-## devServer
+### devServer
 
 本地启动服务
 不需赘述，面试也没人问，需要的时候看看别人的项目就会了；
 
-## 导出模式（output）
+### 导出模式（output）
 
 ```js
 module.exports2 = [
@@ -82,7 +82,7 @@ module.exports2 = [
 3.amd：amd 模块
 4.window：导出为一个 window 下的全局变量
 
-## externals
+### externals
 
 这个可以 chatGpt 一下，意思是这个模块不应该被打包到输出的模块里；会通过 cdn 等其他方式引入；
 比如：我的 react 项目组件库，不用打包 react 这个库，因为我的组件被使用的地方他们肯定会引入组件库；
@@ -98,12 +98,12 @@ externals: [
 ];
 ```
 
-## 给 webpack 传参
+### 给 webpack 传参
 
 cross-env NODE-ENV=prod
 在配置文件中读取这个值
 
-## 对js增加babel-loader
+### 对js增加babel-loader
 
 ```js
 {
@@ -138,11 +138,11 @@ cross-env NODE-ENV=prod
 
   这块主要是熟悉具体内容，具体使用需要看视频或者看文档，或者chatGpt问问
 
-## 配置sourceMap
+### 配置sourceMap
 
   这块也懒得总结了，面试问的少，而且看看文档就知道；但是这块也是一个内容；
 
-## 联邦模块
+### 联邦模块
 
 ```js
 new ModuleFederationPlugin({
@@ -180,4 +180,4 @@ new ModuleFederationPlugin({
 
   他指向的是一个服务的路径，不是一个npm包或者其他的包之类的；
 
-##
+## 打包逻辑
