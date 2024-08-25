@@ -1,3 +1,17 @@
+/**
+ * 
+ *   1.先设置一个promise回调
+  2.然后将加载路径做我script标签的url写上，然后添加到head中
+  3.等脚本加载完成，他执行某个回调，告诉promise他成功了，promise状态一变，后面就执行了；
+  说明：
+    代码分割：Webpack 识别 import() 语句并将对应的代码打包为独立的 chunk 文件。
+    加载请求：当代码执行到 import() 语句时，Webpack runtime 调用 require.e() 触发 chunk 的加载。
+    生成路径并插入脚本：Webpack runtime 生成 chunk 文件的路径，并创建 <script> 标签将其插入页面以启动异步加载。
+    处理加载完成的 chunk：chunk 文件加载并执行后，将其中的模块注册到全局模块系统中，通知等待的 Promise 完成加载。
+    执行异步模块：加载完成后，原始 import() 语句对应的模块会被执行，导出的内容可以被继续使用。
+ * 
+ */
+
 (() => {
   var modules = { // 模块 模块id是文件路径
     './src/title.js': (module, exports, require) => { // require是引用别的模块使用的

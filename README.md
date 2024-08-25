@@ -2,8 +2,6 @@
 
 ## simpleWebpack的实现
 
-
-
 ## webpack 执行流程图
 
 [流程图]<https://www.processon.com/diagraming/616ce0a01e085306d7445e68>
@@ -185,3 +183,92 @@ new ModuleFederationPlugin({
   他指向的是一个服务的路径，不是一个npm包或者其他的包之类的；
 
 ## 打包逻辑
+
+### 我们打包出来的代码是怎么样的
+
+  1.默认打包方式打包出来的代码是类似commonjs模块加载那样的方式
+    通过output.libraryTarget打包成其他格式的，比如amd，es module等
+  2.commonjs下的结构展示：
+    2.1我们把所有的文件按照目录结构和内容组成一个`{目录结构：文件内容}`的对象；这样形成了前端的模块化代码；
+    2.2然后有很多工具函数，用来处理对模块的加载，处理，返回值等的操作；
+
+```js
+(() => {
+  "use strict";
+  var __webpack_modules__ = ({
+    "./src/1.js":
+      ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+        __webpack_require__.r(__webpack_exports__);
+        __webpack_require__.d(__webpack_exports__, {
+          func: () => (func),
+          name: () => (name)
+        });
+        let age = 28;
+        let name = 'lipeng';
+        function func() {
+          console.log(age);
+        }
+        setTimeout(() => {
+          age = 22;
+          func = () => {
+            console.log(age + 22);
+          }
+        }, 1000);
+      })
+  });
+  var __webpack_module_cache__ = {};
+  function __webpack_require__(moduleId) {
+    var cachedModule = __webpack_module_cache__[moduleId];
+    if (cachedModule !== undefined) {
+      return cachedModule.exports;
+    }
+    var module = __webpack_module_cache__[moduleId] = {
+      exports: {}
+    };
+    __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+    return module.exports;
+  }
+  (() => {
+    __webpack_require__.d = (exports, definition) => {
+      for (var key in definition) {
+        if (__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+          Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+        }
+      }
+    };
+  })();
+  (() => {
+    __webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+  })();
+  (() => {
+    __webpack_require__.r = (exports) => {
+      if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+        Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+      }
+      Object.defineProperty(exports, '__esModule', { value: true });
+    };
+  })();
+  var __webpack_exports__ = {};
+  __webpack_require__.r(__webpack_exports__);
+  var _1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/1.js");
+  (0, _1_js__WEBPACK_IMPORTED_MODULE_0__.func)();
+  console.log(_1_js__WEBPACK_IMPORTED_MODULE_0__.name);
+  console.log('dd', dd);
+})()
+  ;
+```
+
+  有些具体的代码讲解了如何处理模块之间的交互
+  在5.budle/source下有不同模块类型之间进行交互；
+
+### 模块懒加载
+
+  1.先设置一个promise回调
+  2.然后将加载路径做我script标签的url写上，然后添加到head中
+  3.等脚本加载完成，他执行某个回调，告诉promise他成功了，promise状态一变，后面就执行了；
+  说明：
+    代码分割：Webpack 识别 import() 语句并将对应的代码打包为独立的 chunk 文件。
+    加载请求：当代码执行到 import() 语句时，Webpack runtime 调用 require.e() 触发 chunk 的加载。
+    生成路径并插入脚本：Webpack runtime 生成 chunk 文件的路径，并创建 <script> 标签将其插入页面以启动异步加载。
+    处理加载完成的 chunk：chunk 文件加载并执行后，将其中的模块注册到全局模块系统中，通知等待的 Promise 完成加载。
+    执行异步模块：加载完成后，原始 import() 语句对应的模块会被执行，导出的内容可以被继续使用。
