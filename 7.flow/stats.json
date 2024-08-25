@@ -1,0 +1,78 @@
+{
+    "hash": "74535010557323a9b365",
+    "version": "5.76.2",
+    "time": 766,
+    "builtAt": 1679206312055,
+    "publicPath": "auto",
+    "outputPath": "C:\\aproject\\zhufengwebpack20230305\\7.flow\\dist",
+    "assetsByChunkName": {
+        "main": [
+            "main.js"
+        ]
+    },
+    "assets": [
+        {
+            "type": "asset",
+            "name": "main.js",
+            "chunkNames": [
+                "main"
+            ]
+        }
+    ],
+    "chunks": [
+        {
+            "names": [
+                "main"
+            ],
+            "runtime": [
+                "main"
+            ],
+            "files": [
+                "main.js"
+            ],
+            "hash": "331e4cc75ab6f1b742e6",
+            "origins": [
+                {
+                    "loc": "main",
+                    "request": "./src"
+                }
+            ]
+        }
+    ],
+    "modules": [
+        {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "identifier": "C:\\aproject\\zhufengwebpack20230305\\7.flow\\src\\index.js",
+            "name": "./src/index.js",
+            "reasons": [
+                {
+                    "type": "entry",
+                    "explanation": "",
+                    "userRequest": "./src",
+                    "loc": "main"
+                }
+            ]
+        }
+    ],
+    "entrypoints": {
+        "main": {
+            "name": "main",
+            "assets": [
+                {
+                    "name": "main.js",
+                }
+            ]
+        }
+    },
+    "namedChunkGroups": {
+        "main": {
+            "name": "main",
+            "assets": [
+                {
+                    "name": "main.js"
+                }
+            ]
+        }
+    }
+}

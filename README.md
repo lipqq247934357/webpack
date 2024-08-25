@@ -1,5 +1,25 @@
 # webpack
 
+- [webpack](#webpack)
+  - [simpleWebpack的实现](#simplewebpack的实现)
+  - [webpack 执行流程图](#webpack-执行流程图)
+  - [基本使用](#基本使用)
+    - [module 里面的配置](#module-里面的配置)
+    - [devServer](#devserver)
+    - [导出模式（output）](#导出模式output)
+    - [externals](#externals)
+    - [给 webpack 传参](#给-webpack-传参)
+    - [对js增加babel-loader](#对js增加babel-loader)
+    - [配置sourceMap](#配置sourcemap)
+    - [联邦模块](#联邦模块)
+  - [打包逻辑](#打包逻辑)
+    - [我们打包出来的代码是怎么样的](#我们打包出来的代码是怎么样的)
+    - [模块懒加载](#模块懒加载)
+    - [AST(abstract Syntax Tree)](#astabstract-syntax-tree)
+    - [编写babel插件](#编写babel插件)
+  - [webpack原理](#webpack原理)
+    - [调试webpack源码](#调试webpack源码)
+
 ## simpleWebpack的实现
 
 ## webpack 执行流程图
@@ -191,6 +211,8 @@ new ModuleFederationPlugin({
   2.commonjs下的结构展示：
     2.1我们把所有的文件按照目录结构和内容组成一个`{目录结构：文件内容}`的对象；这样形成了前端的模块化代码；
     2.2然后有很多工具函数，用来处理对模块的加载，处理，返回值等的操作；
+  3.commonjs对es module的处理是使用Object.defineProperty
+    封装一个对象，然后可以都对这个对象操作，模拟了es module的逻辑
 
 ```js
 (() => {
@@ -272,3 +294,22 @@ new ModuleFederationPlugin({
     生成路径并插入脚本：Webpack runtime 生成 chunk 文件的路径，并创建 <script> 标签将其插入页面以启动异步加载。
     处理加载完成的 chunk：chunk 文件加载并执行后，将其中的模块注册到全局模块系统中，通知等待的 Promise 完成加载。
     执行异步模块：加载完成后，原始 import() 语句对应的模块会被执行，导出的内容可以被继续使用。
+
+### AST(abstract Syntax Tree)
+
+  源代码抽象表示形式
+
+### 编写babel插件
+
+  解析es代码，然后转换
+  主要是将代码转化成抽象语法树，然后将抽象语法树再转化成对应版本的代码
+
+  1.babel插件的编写细节我没有涉猎，如果需要学，可以看看：
+    /Users/lipeng/资料/视频/webpack核心课/13节
+
+## webpack原理
+
+### 调试webpack源码
+
+  1.执行webpack-cli
+  2.执行webpack包
