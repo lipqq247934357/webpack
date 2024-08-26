@@ -10,6 +10,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@babel/core": "^7.25.2",
+    "babel-types": "^6.26.0",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4"
   }
